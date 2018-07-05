@@ -5,13 +5,22 @@ game = {
 
 
 camera = require "game/camera"
+level  = require "game/level"
 
+
+
+game.spawn = (object) =>
+  @objects[#@objects + 1] = object
 
 
 game.load = =>
   @objects = {}
 
-  @camera  = camera.make 0, 0, 2, 2, 0
+  @camera  = camera.make 0, 0, 0, 0, 0
+  @world   = lib.bump.newWorld!
+
+
+  level\load "res/levels/0.png", @
 
 
 game.update = (dt) =>
