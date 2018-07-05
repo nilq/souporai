@@ -1,7 +1,8 @@
 level = {
-  size: 32 -- size of grid squares
+  size: 20 -- size of grid squares
   registry: {
-    "block": { 0, 0, 0 }
+    "block":  { 0, 0, 0 }
+    "player": { 1, 1, 0 }
   }
   map: {}
 }
