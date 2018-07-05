@@ -1,0 +1,2 @@
+*.lua
+!lib/bump.lua
