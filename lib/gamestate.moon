@@ -4,7 +4,10 @@ state = {
 
 setmetatable state, state
 
+
+
 state.new = => {}
+
 
 state.set = (path, args) =>
   @current.unload! if @current.unload
@@ -26,20 +29,26 @@ state.load = =>
   @current\load! if @current.load
   @
 
+
 state.update = (dt) =>
   @current\update dt if @current.update
   @
+
 
 state.draw = =>
   @current\draw! if @current.draw
   @
 
+
 state.press = (key, isrepeat) =>
   @current\press key, isrepeat if @current.press
   @
 
+
 state.release = (key, isrepeat) =>
   @current\release key, isrepeat if @current.release
   @
+
+
 
 state
