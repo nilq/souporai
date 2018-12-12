@@ -3,6 +3,8 @@ level = {
   registry: {
     "block":  { 0, 0, 0 }
     "player": { 1, 1, 0 }
+    "jump":   { 0, 1, 0 }
+    "die":    { 1, 0, 0 }
   }
   map: {}
 }
@@ -32,7 +34,15 @@ level.load = (path, game) =>
 
 
 level.spawn = (k, x, y, game) ->
-  a = objects[k].make x, y
+  k_name = k
+
+  if k_name == "jump"
+    k = "block"
+
+  if k_name == "die"
+    k = "block"
+
+  a = objects[k].make x, y, k_name
 
   game\spawn a
   game.world\add a, a.x, a.y, a.w, a.h

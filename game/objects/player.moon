@@ -14,7 +14,7 @@ make = (x, y) ->
 
     acc: 15           -- acceleration
 
-    jump:   10.5      -- jump force
+    jump:   11        -- jump force
     jumped: false     -- did the player jump
 
     grounded: false   -- is the player on the ground
@@ -71,12 +71,22 @@ make = (x, y) ->
     @x, @y, @collisions = game.world\move @, @x + @dx, @y + @dy
 
     for c in *@collisions
-      c.other\trigger @ if c.other.trigger      
+      c.other\trigger @ if c.other.trigger
+
+      if c.other.key == "die"
+        love.load!
+
+        continue      
 
       if c.normal.y ~= 0
         if c.normal.y == -1
           @grounded = true
           @can_run  = true
+
+          if c.other.key == "jump"
+            @dy = -@dy * 3
+
+            continue
 
         @dy = 0
 
@@ -190,6 +200,9 @@ make = (x, y) ->
     if @running
       if key == "lshift"
         @running = false
+
+    if key == "r"
+      love.load!
 
 
   player
